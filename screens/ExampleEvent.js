@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 
-export default function EventsExample({ navigation, route }) {
+export default function ExampleEvent({ navigation, route }) {
 
   const { nombre, contador, total } = route.params || {};
   const valorContador = contador ?? total;

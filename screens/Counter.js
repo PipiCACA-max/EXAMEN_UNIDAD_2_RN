@@ -1,52 +1,54 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function Counter({ navigation }) {
+export default function Counter({ navigation, route }) {
 
-  const [count, setCount] = useState(0);
+    const { nombre } = route.params || {};
 
-  const handleIncrement = () => setCount(count + 1);
-  const handleDecrement = () => setCount(count - 1);
-  const handleZero = () => setCount(0);
+    const [count, setCount] = useState(0);
 
-  return (
-    <View style={styles.container}>
-      
-      <Text style={styles.title}>🔢 Contador</Text>
+    const handleIncrement = () => setCount(count + 1);
+    const handleDecrement = () => setCount(count - 1);
+    const handleZero = () => setCount(0);
 
-      {/* Caja del número */}
-      <View style={styles.counterBox}>
-        <Text style={styles.value}>{count}</Text>
-      </View>
+    return (
+        <View style={styles.container}>
+        
+        <Text style={styles.title}>🔢 Contador</Text>
 
-      {/* Botones de acción */}
-      <View style={styles.row}>
-        <TouchableOpacity style={styles.circleButton} onPress={handleIncrement}>
-          <Text style={styles.circleText}>+</Text>
+        {/* Caja del número */}
+        <View style={styles.counterBox}>
+            <Text style={styles.value}>{count}</Text>
+        </View>
+
+        {/* Botones de acción */}
+        <View style={styles.row}>
+            <TouchableOpacity style={styles.circleButton} onPress={handleIncrement}>
+            <Text style={styles.circleText}>+</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.circleButton} onPress={handleDecrement}>
+            <Text style={styles.circleText}>−</Text>
+            </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity style={styles.resetButton} onPress={handleZero}>
+            <Text style={styles.buttonText}>Reiniciar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.circleButton} onPress={handleDecrement}>
-          <Text style={styles.circleText}>−</Text>
+        <TouchableOpacity 
+            style={styles.sendButton} 
+            onPress={() => navigation.navigate("ExampleEvent", { nombre, contador: count })}
+        >
+            <Text style={styles.buttonText}>Enviar a Eventos</Text>
         </TouchableOpacity>
-      </View>
 
-      <TouchableOpacity style={styles.resetButton} onPress={handleZero}>
-        <Text style={styles.buttonText}>Reiniciar</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity 
-        style={styles.sendButton} 
-        onPress={() => navigation.navigate("ExampleEvent", { contador: count })}
-      >
-        <Text style={styles.buttonText}>Enviar a Eventos</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity 
-        style={styles.backButton} 
-        onPress={() => navigation.navigate("Home")}
-      >
-        <Text style={styles.backText}>Volver a Home</Text>
-      </TouchableOpacity>
+        <TouchableOpacity 
+            style={styles.backButton} 
+            onPress={() => navigation.navigate("Home")}
+        >
+            <Text style={styles.backText}>Volver a Home</Text>
+        </TouchableOpacity>
 
     </View>
   );

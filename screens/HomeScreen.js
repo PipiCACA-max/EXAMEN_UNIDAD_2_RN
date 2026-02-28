@@ -14,7 +14,7 @@ export default function HomeScreen({ navigation }) {
       <TouchableOpacity
         style={styles.button}
         onPress={() =>
-          navigation.navigate("EventsExample", { nombre: 'Solomeo Paredes' })
+          navigation.navigate("ExampleEvent", { nombre: 'Solomeo Paredes' })
         }
       >
         <Text style={styles.buttonText}>📌 Ir a Eventos</Text>
@@ -22,7 +22,7 @@ export default function HomeScreen({ navigation }) {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate("Counter")}
+        onPress={() => navigation.navigate("Counter", {nombre: "Solomeo Paredes"})}
       >
         <Text style={styles.buttonText}>🔢 Ir a Contador</Text>
       </TouchableOpacity>
